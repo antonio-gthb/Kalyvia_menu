@@ -105,7 +105,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #1a1a1a;
-            scroll-margin-top: 70px; /* Prevents sticky nav from covering the title */
+            scroll-margin-top: 70px;
         }
         .menu-item {
             background: var(--card-bg);
@@ -137,9 +137,14 @@
             margin-top: 5px;
         }
         
-        /* Hide Greek by default */
+        /* FIX: Instantly hide Greek elements using CSS display rule on page load */
         .lang-el {
-            display: none;
+            display: none !important;
+        }
+        
+        /* Helper class for active view styles */
+        .show-inline {
+            display: inline !important;
         }
         
         footer {
@@ -153,7 +158,7 @@
 <body>
 
 <header>
-    <h1 class="lang-en">KALYVIA</h1>
+    <h1 class="lang-en show-inline">KALYVIA</h1>
     <h1 class="lang-el">ΚΑΛΥΒΙΑ</h1>
     <div class="subtitle">Beach Bar Menu • Tinos</div>
     
@@ -164,348 +169,161 @@
 </header>
 
 <nav class="nav-menu">
-    <a href="#breakfast" class="nav-link"><span class="lang-en">Snacks</span><span class="lang-el">Σνακ</span></a>
-    <a href="#sandwiches" class="nav-link"><span class="lang-en">Burgers</span><span class="lang-el">Μπέργκερ</span></a>
-    <a href="#salads" class="nav-link"><span class="lang-en">Salads & Pizza</span><span class="lang-el">Σαλάτες & Πίτσα</span></a>
-    <a href="#coffee" class="nav-link"><span class="lang-en">Coffee & Drinks</span><span class="lang-el">Καφέδες & Ποτά</span></a>
-    <a href="#cocktails" class="nav-link"><span class="lang-en">Cocktails</span><span class="lang-el">Κοκτέιλ</span></a>
-    <a href="#beers" class="nav-link"><span class="lang-en">Beers</span><span class="lang-el">Μπύρες</span></a>
+    <a href="#breakfast" class="nav-link"><span class="lang-en show-inline">Snacks</span><span class="lang-el">Σνακ</span></a>
+    <a href="#sandwiches" class="nav-link"><span class="lang-en show-inline">Burgers</span><span class="lang-el">Μπέργκερ</span></a>
+    <a href="#salads" class="nav-link"><span class="lang-en show-inline">Salads & Pizza</span><span class="lang-el">Σαλάτες & Πίτσα</span></a>
+    <a href="#coffee" class="nav-link"><span class="lang-en show-inline">Coffee & Drinks</span><span class="lang-el">Καφέδες & Ποτά</span></a>
+    <a href="#cocktails" class="nav-link"><span class="lang-en show-inline">Cocktails</span><span class="lang-el">Κοκτέιλ</span></a>
+    <a href="#beers" class="nav-link"><span class="lang-en show-inline">Beers</span><span class="lang-el">Μπύρες</span></a>
 </nav>
 
 <div class="container">
 
     <h2 id="breakfast" class="section-title">
-        <span class="lang-en">Breakfast & Snacks</span>
+        <span class="lang-en show-inline">Breakfast & Snacks</span>
         <span class="lang-el">Πρωινά & Σνακ</span>
     </h2>
     
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">GREEK YOGURT</span><span class="lang-el">ΕΛΛΗΝΙΚΟ ΓΙΑΟΥΡΤΙ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">GREEK YOGURT</span><span class="lang-el">ΕΛΛΗΝΙΚΟ ΓΙΑΟΥΡΤΙ</span></span>
             <span class="menu-item-price">6,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Greek Yogurt With Honey.</span>
+            <span class="lang-en show-inline">Greek Yogurt With Honey.</span>
             <span class="lang-el">Ελληνικό Γιαούρτι με Μέλι.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">FRUIT SALAD</span><span class="lang-el">ΦΡΟΥΤΟΣΑΛΑΤΑ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">FRUIT SALAD</span><span class="lang-el">ΦΡΟΥΤΟΣΑΛΑΤΑ</span></span>
             <span class="menu-item-price">13,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">With Greek Yogurt And Honey.</span>
+            <span class="lang-en show-inline">With Greek Yogurt And Honey.</span>
             <span class="lang-el">Με Ελληνικό Γιαούρτι και Μέλι.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">OMELETTE SANDWICH</span><span class="lang-el">ΣΑΝΤΟΥΙΤΣ ΟΜΕΛΕΤΑ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">OMELETTE SANDWICH</span><span class="lang-el">ΣΑΝΤΟΥΙΤΣ ΟΜΕΛΕΤΑ</span></span>
             <span class="menu-item-price">10,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Sourdough Bread, Volaki Cheese, Spinach, Tomato And Chives.</span>
+            <span class="lang-en show-inline">Sourdough Bread, Volaki Cheese, Spinach, Tomato And Chives.</span>
             <span class="lang-el">Ψωμί Προζυμένιο, Τυρί Βολάκι, Σπανάκι, Ντομάτα και Σχοινόπρασο.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">AVOCADO TOAST</span><span class="lang-el">AVOCADO TOAST</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">AVOCADO TOAST</span><span class="lang-el">AVOCADO TOAST</span></span>
             <span class="menu-item-price">9,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Sourdough Bread, Avocado Cream With Basil, Tomato And Boiled Egg.</span>
+            <span class="lang-en show-inline">Sourdough Bread, Avocado Cream With Basil, Tomato And Boiled Egg.</span>
             <span class="lang-el">Ψωμί Προζυμένιο, Κρέμα Αβοκάντο με Βασιλικό, Ντομάτα και Βραστό Αυγό.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">TOAST</span><span class="lang-el">ΤΟΣΤ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">TOAST</span><span class="lang-el">ΤΟΣΤ</span></span>
             <span class="menu-item-price">4,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Ham/Turkey And Cheese.</span>
+            <span class="lang-en show-inline">Ham/Turkey And Cheese.</span>
             <span class="lang-el">Ζαμπόν/Γαλοπούλα και Τυρί.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">KALYVIA TOAST</span><span class="lang-el">ΚΑΛΥΒΙΑ ΤΟΣΤ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">KALYVIA TOAST</span><span class="lang-el">ΚΑΛΥΒΙΑ ΤΟΣΤ</span></span>
             <span class="menu-item-price">6,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Big Size Bread, Ham/Turkey, Cheese, Lettuce, Tomato And Mayonnaise.</span>
+            <span class="lang-en show-inline">Big Size Bread, Ham/Turkey, Cheese, Lettuce, Tomato And Mayonnaise.</span>
             <span class="lang-el">Ψωμί Μεγάλου Μεγέθους, Ζαμπόν Γαλοπούλα, Τυρί, Μαρούλι, Ντομάτα και Μαγιονέζα.</span>
         </div>
     </div>
 
     <h2 id="sandwiches" class="section-title">
-        <span class="lang-en">Sandwiches & Burgers</span>
+        <span class="lang-en show-inline">Sandwiches & Burgers</span>
         <span class="lang-el">Σάντουιτς & Μπέργκερ</span>
     </h2>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">MORTADELLA AND PISTACHIO</span><span class="lang-el">ΜΟΡΤΑΔΕΛΑ ΚΑΙ ΦΙΣΤΙΚΙ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">MORTADELLA AND PISTACHIO</span><span class="lang-el">ΜΟΡΤΑΔΕΛΑ ΚΑΙ ΦΙΣΤΙΚΙ</span></span>
             <span class="menu-item-price">7,50 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Focaccia Bread, Mortadella, Mozzarella, Pistachio Pesto, Tomato And Olive Oil.</span>
+            <span class="lang-en show-inline">Focaccia Bread, Mortadella, Mozzarella, Pistachio Pesto, Tomato And Olive Oil.</span>
             <span class="lang-el">Ψωμί Φοκάτσια, Μορταδέλα, Μοτσαρέλα, Πέστο Φιστικιού, Ντομάτα και Ελαιόλαδο.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">SPINACH</span><span class="lang-el">ΣΠΑΝΑΚΙ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">SPINACH</span><span class="lang-el">ΣΠΑΝΑΚΙ</span></span>
             <span class="menu-item-price">6,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Focaccia Bread, Spinach, Anthotyro Cheese, Yogurt, Anethum, Tomato, Lemon Zest And Olive Oil.</span>
+            <span class="lang-en show-inline">Focaccia Bread, Spinach, Anthotyro Cheese, Yogurt, Anethum, Tomato, Lemon Zest And Olive Oil.</span>
             <span class="lang-el">Ψωμί Φοκάτσια, Σπανάκι, Ανθότυρο, Γιαούρτι, Άνηθος, Ντομάτα, Ξύσμα Λεμονιού και Ελαιόλαδο.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">CLUB SANDWICH</span><span class="lang-el">CLUB SANDWICH</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">CLUB SANDWICH</span><span class="lang-el">CLUB SANDWICH</span></span>
             <span class="menu-item-price">13,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">With Ham, Bacon, Cheese, Tomato, Lettuce, Mayonnaise And Tortilla Chips.</span>
+            <span class="lang-en show-inline">With Ham, Bacon, Cheese, Tomato, Lettuce, Mayonnaise And Tortilla Chips.</span>
             <span class="lang-el">Με Ζαμπόν, Μπέικον, Τυρί, Ντομάτα, Μαρούλι, Μαγιονέζα και Τσιπς Τορτίγιας.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">CIABATTA</span><span class="lang-el">ΤΣΙΑΠΑΤΑ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">CIABATTA</span><span class="lang-el">ΤΣΙΑΠΑΤΑ</span></span>
             <span class="menu-item-price">6,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Ciabatta Bread, Ham/Turkey, Cheese, Lettuce And Mayonnaise.</span>
+            <span class="lang-en show-inline">Ciabatta Bread, Ham/Turkey, Cheese, Lettuce And Mayonnaise.</span>
             <span class="lang-el">Ψωμί Τσιαπάτα, Ζαμπόν Γαλοπούλα, Τυρί, Μαρούλι και Μαγιονέζα.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">CIABATTA CHICKEN</span><span class="lang-el">ΤΣΙΑΠΑΤΑ ΚΟΤΟΠΟΥΛΟ</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">CIABATTA CHICKEN</span><span class="lang-el">ΤΣΙΑΠΑΤΑ ΚΟΤΟΠΟΥΛΟ</span></span>
             <span class="menu-item-price">8,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Ciabatta Bread, Chicken Nuggets, Cheese, Tomato, Lettuce And Mayonnaise.</span>
+            <span class="lang-en show-inline">Ciabatta Bread, Chicken Nuggets, Cheese, Tomato, Lettuce And Mayonnaise.</span>
             <span class="lang-el">Ψωμί Τσιαπάτα, Κοτομπουκιές, Τυρί, Ντομάτα, Μαρούλι και Μαγιονέζα.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">HOT DOG</span><span class="lang-el">HOT DOG</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">HOT DOG</span><span class="lang-el">HOT DOG</span></span>
             <span class="menu-item-price">6,00 €</span>
         </div>
         <div class="menu-item-description">
-            <span class="lang-en">Hot Dog Bread, Sausage, Ketchup And Mustard.</span>
+            <span class="lang-en show-inline">Hot Dog Bread, Sausage, Ketchup And Mustard.</span>
             <span class="lang-el">Ψωμί Hot Dog, Λουκάνικο, Κέτσαπ και Μουστάρδα.</span>
         </div>
     </div>
 
     <div class="menu-item">
         <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">CLASSIC BURGER</span><span class="lang-el">CLASSIC BURGER</span></span>
+            <span class="menu-item-name"><span class="lang-en show-inline">CLASSIC BURGER</span><span class="lang-el">CLASSIC BURGER</span></span>
             <span class="menu-item-price">14,00 €</span>
         </div>
-        <div class="menu-item-description">
-            <span class="lang-en">100% Beef Burger, Brioche Bread, Bacon, Cheddar Cheese, Tomato, Lettuce And Mayonnaise.</span>
-            <span class="lang-el">100% Μοσχαρίσιο Μπιφτέκι, Ψωμί Μπριός, Μπέικον, Τυρί Τσένταρ Ντομάτα, Μαρούλι και Μαγιονέζα.</span>
-        </div>
-    </div>
-
-    <h2 id="salads" class="section-title">
-        <span class="lang-en">Salads & Pizza</span>
-        <span class="lang-el">Σαλάτες & Πίτσα</span>
-    </h2>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">NTAKOS</span><span class="lang-el">ΝΤΑΚΟΣ</span></span>
-            <span class="menu-item-price">14,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Barley Nut, Tomato, Feta Cheese, Olives, Olive Oil, Oregano And Kritamos.</span>
-            <span class="lang-el">Παξιμάδι Κριθάρι, Ντομάτα, Φέτα, Ελιές, Ελαιόλαδο, Ρίγανη και Κρίταμος.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">GUACAMOLE</span><span class="lang-el">ΓΟΥΑΚΑΜΟΛΕ</span></span>
-            <span class="menu-item-price">10,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Avocado Cream, Spring Onion, Tomato, Basil, Tortilla's Chips.</span>
-            <span class="lang-el">Κρέμα Αβοκάντο, Φρέσκο Κρεμμυδάκι, Ντομάτα, Βασιλικός, Τσιπς Τορτίγιας.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">MARGHERITA PIZZA</span><span class="lang-el">ΠΙΤΣΑ ΜΑΡΓΑΡΙΤΑ</span></span>
-            <span class="menu-item-price">13,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Gouda Cheese, Tomato Sauce, Oregano.</span>
-            <span class="lang-el">Τυρί Γκούντα, Σάλτσα Ντομάτας, Ρίγανη.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">MORTADELLA PIZZA</span><span class="lang-el">ΠΙΤΣΑ ΜΟΡΤΑΔΕΛΑ</span></span>
-            <span class="menu-item-price">15,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Mozzarella, Pistachio Pesto, Tomato Sauce.</span>
-            <span class="lang-el">Μοτσαρέλα, Πέστο Φιστικιού, Σάλτσα Ντομάτας.</span>
-        </div>
-    </div>
-
-    <h2 id="coffee" class="section-title">
-        <span class="lang-en">Coffee & Refreshments</span>
-        <span class="lang-el">Καφέδες & Αναψυκτικά</span>
-    </h2>
-
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ESPRESSO SINGLE</span><span class="lang-el">ΕΣΠΡΕΣΟ ΜΟΝΟΣ</span></span><span class="menu-item-price">3,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ESPRESSO DOUBLE</span><span class="lang-el">ΕΣΠΡΕΣΟ ΔΙΠΛΟΣ</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">CAPPUCCINO</span><span class="lang-el">ΚΑΠΟΥΤΣΙΝΟ</span></span><span class="menu-item-price">4,50 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">FREDDO ESPRESSO</span><span class="lang-el">ΦΡΕΝΤΟ ΕΣΠΡΕΣΟ</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">FREDDO CAPPUCCINO</span><span class="lang-el">ΦΡΕΝΤΟ ΚΑΠΟΥΤΣΙΝΟ</span></span><span class="menu-item-price">4,50 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">FRAPPE</span><span class="lang-el">ΦΡΑΠΕ</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">MOCHACCINO / CHOCOLATE</span><span class="lang-el">ΜΟΚΑΤΣΙΝΟ / ΣΟΚΟΛΑΤΑ</span></span><span class="menu-item-price">7,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">MILKSHAKE</span><span class="lang-el">ΜΙΛΚΣΕΪΚ</span></span><span class="menu-item-price">7,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Chocolate / Vanilla / Strawberry / Banana.</span><span class="lang-el">Σοκολάτα / Βανίλια / Φράουλα / Μπανάνα.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ICE TEA</span><span class="lang-el">ΚΡΥΟ ΤΣΑΪ</span></span><span class="menu-item-price">4,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Lemon / Peach / Green.</span><span class="lang-el">Λεμόνι / Ροδάκινο / Πράσινο.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">WATER ICE (GRANITA)</span><span class="lang-el">ΓΡΑΝΙΤΑ</span></span><span class="menu-item-price">6,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Lemon / Strawberry.</span><span class="lang-el">Λεμόνι / Φράουλα.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ORANGEADE / LEMONADE / SPARKLING WATER</span><span class="lang-el">ΠΟΡΤΟΚΑΛΑΔΑ / ΛΕΜΟΝΑΔΑ / ΞΙΝΟ ΝΕΡΟ</span></span><span class="menu-item-price">3,50 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">COCA COLA / LIGHT / CHERRY SODA</span><span class="lang-el">COCA COLA / LIGHT / ΣΟΔΑ ΚΕΡΑΣΙ</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">JUICES (ORANGE / LEMON / 3 FRUITS)</span><span class="lang-el">ΧΥΜΟΙ (ΠΟΡΤΟΚΑΛΙ / ΛΕΜΟΝΙ / 3 ΦΡΟΥΤΑ)</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">THREE CENTS</span><span class="menu-item-price">6,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Grapefruit Soda / Ginger Beer.</span><span class="lang-el">Grapefruit Soda / Ginger Beer.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">FRESH JUICE</span><span class="lang-el">ΦΡΕΣΚΟΣ ΧΥΜΟΣ</span></span><span class="menu-item-price">6,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Watermelon / Melon / Orange.</span><span class="lang-el">Καρπούζι / Πεπόνι / Πορτοκάλι.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">HOMEMADE LEMONADE</span><span class="lang-el">ΣΠΙΤΙΚΗ ΛΕΜΟΝΑΔΑ</span></span><span class="menu-item-price">6,00 €</span></div>
-    </div>
-
-    <h2 id="cocktails" class="section-title">
-        <span class="lang-en">Signature Cocktails</span>
-        <span class="lang-el">Signature Κοκτέιλ</span>
-    </h2>
-
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">CAMPARI SPRITZ</span><span class="menu-item-price">12,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Campari, Prosecco, Soda Water.</span><span class="lang-el">Campari, Prosecco, Σόδα.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">APEROL SPRITZ</span><span class="menu-item-price">12,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Aperol, Prosecco, Soda Water.</span><span class="lang-el">Aperol, Prosecco, Σόδα.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">KALYVIA SMASH (FROZEN)</span><span class="menu-item-price">12,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Masticha, Melon, Basil, Lemon, Pepper.</span><span class="lang-el">Μαστίχα, Πεπόνι, Βασιλικός, Λεμόνι, Πιπέρι.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">MARKOJITO</span><span class="menu-item-price">12,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Raki, Lime, Spearmint, Lemon Juice.</span><span class="lang-el">Ρακή, Λάιμ, Δυόσμος, Χυμός Λεμονιού.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">SHEEP KICK (FROZEN)</span><span class="menu-item-price">13,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">London Dry Gin, Honey, Lavender, Raspberry, Chilli, Lemon Juice.</span><span class="lang-el">London Dry Gin, Μέλι, Λεβάντα, Σμέουρο, Τσίλι, Χυμός Λεμονιού.</span></div>
-    </div>
-
-    <h2 id="beers" class="section-title">
-        <span class="lang-en">Beers & Local Spirits</span>
-        <span class="lang-el">Μπύρες & Τοπικά Ποτά</span>
-    </h2>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">NISSOS PILSNER (5% VOL.) / LAGER (4.5% VOL.)</span><span class="menu-item-price">6,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">NISSOS IPA (4.6% VOL.)</span><span class="menu-item-price">7,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">MYTHOS / MYTHOS ICE</span><span class="menu-item-price">6,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">RAKI (100ML)</span><span class="lang-el">ΡΑΚΗ (100ML)</span></span><span class="menu-item-price">5,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">RAKI (200ML)</span><span class="lang-el">ΡΑΚΗ (200ML)</span></span><span class="menu-item-price">10,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">GLASS OF OUZO</span><span class="lang-el">ΟΥΖΟ ΠΟΤΗΡΙ</span></span><span class="menu-item-price">6,00 €</span></div>
-    </div>
-
-</div>
-
-<footer>
-    <p>KALYVIA BEACH BAR • TINOS</p>
-</footer>
-
-<script>
-    function setLanguage(lang) {
-        document.getElementById('btn-en').classList.remove('active');
-        document.getElementById('btn-el').classList.remove('active');
-        
-        if (lang === 'en') {
-            document.getElementById('btn-en').classList.add('active');
-            document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'inline');
-            document.querySelectorAll('.lang-el').forEach(el => el.style.display = 'none');
-        } else {
-            document.getElementById('btn-el').classList.add('active');
-            document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.lang-el').forEach(el => el.style.display = 'inline');
-        }
-    }
-</script>
-
-</body>
-</html>
+        <div class="menu-item-description
