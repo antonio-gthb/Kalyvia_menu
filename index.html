@@ -52,6 +52,9 @@
             border-radius: 20px;
             margin: 0 5px;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         .lang-btn.active, .lang-btn:hover {
             background-color: var(--accent-color);
@@ -100,14 +103,12 @@
             color: #666;
             margin-top: 5px;
         }
-        .item-details {
-            font-size: 0.85rem;
-            color: #888;
-            margin-top: 2px;
-        }
-        [lang="el"] {
+        
+        /* Hide Greek by default */
+        .lang-el {
             display: none;
         }
+        
         footer {
             text-align: center;
             padding: 30px;
@@ -124,14 +125,17 @@
     <div class="subtitle">Beach Bar Menu • Tinos</div>
     
     <div class="lang-switch">
-        <button class="lang-btn active" onclick="setLanguage('en')">English</button>
-        <button class="lang-btn" onclick="setLanguage('el')">Ελληνικά</button>
+        <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')"><span>🇬🇧</span> English</button>
+        <button id="btn-el" class="lang-btn" onclick="setLanguage('el')"><span>🇬🇷</span> Ελληνικά</button>
     </div>
 </header>
 
 <div class="container">
 
-    <h2 class="section-title"><span class="lang-en">Breakfast & Snacks</span><span class="lang-el">Πρωινά & Σνακ</span></h2>
+    <h2 class="section-title">
+        <span class="lang-en">Breakfast & Snacks</span>
+        <span class="lang-el">Πρωινά & Σνακ</span>
+    </h2>
     
     <div class="menu-item">
         <div class="menu-item-header">
@@ -199,7 +203,10 @@
         </div>
     </div>
 
-    <h2 class="section-title"><span class="lang-en">Sandwiches & Burgers</span><span class="lang-el">Σάντουιτς & Μπέργκερ</span></h2>
+    <h2 class="section-title">
+        <span class="lang-en">Sandwiches & Burgers</span>
+        <span class="lang-el">Σάντουιτς & Μπέργκερ</span>
+    </h2>
 
     <div class="menu-item">
         <div class="menu-item-header">
@@ -278,7 +285,10 @@
         </div>
     </div>
 
-    <h2 class="section-title"><span class="lang-en">Salads & Pizza</span><span class="lang-el">Σαλάτες & Πίτσα</span></h2>
+    <h2 class="section-title">
+        <span class="lang-en">Salads & Pizza</span>
+        <span class="lang-el">Σαλάτες & Πίτσα</span>
+    </h2>
 
     <div class="menu-item">
         <div class="menu-item-header">
@@ -324,7 +334,10 @@
         </div>
     </div>
 
-    <h2 class="section-title"><span class="lang-en">Coffee & Refreshments</span><span class="lang-el">Καφέδες & Αναψυκτικά</span></h2>
+    <h2 class="section-title">
+        <span class="lang-en">Coffee & Refreshments</span>
+        <span class="lang-el">Καφέδες & Αναψυκτικά</span>
+    </h2>
 
     <div class="menu-item">
         <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ESPRESSO SINGLE</span><span class="lang-el">ΕΣΠΡΕΣΟ ΜΟΝΟΣ</span></span><span class="menu-item-price">3,00 €</span></div>
@@ -380,7 +393,10 @@
         <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">HOMEMADE LEMONADE</span><span class="lang-el">ΣΠΙΤΙΚΗ ΛΕΜΟΝΑΔΑ</span></span><span class="menu-item-price">6,00 €</span></div>
     </div>
 
-    <h2 class="section-title"><span class="lang-en">Signature Cocktails</span><span class="lang-el">Signature Κοκτέιλ</span></h2>
+    <h2 class="section-title">
+        <span class="lang-en">Signature Cocktails</span>
+        <span class="lang-el">Signature Κοκτέιλ</span>
+    </h2>
 
     <div class="menu-item">
         <div class="menu-item-header"><span class="menu-item-name">CAMPARI SPRITZ</span><span class="menu-item-price">12,00 €</span></div>
@@ -403,7 +419,10 @@
         <div class="menu-item-description"><span class="lang-en">London Dry Gin, Honey, Lavender, Raspberry, Chilli, Lemon Juice.</span><span class="lang-el">London Dry Gin, Μέλι, Λεβάντα, Σμέουρο, Τσίλι, Χυμός Λεμονιού.</span></div>
     </div>
 
-    <h2 class="section-title"><span class="lang-en">Beers & Local Spirits</span><span class="lang-el">Μπύρες & Τοπικά Ποτά</span></h2>
+    <h2 class="section-title">
+        <span class="lang-en">Beers & Local Spirits</span>
+        <span class="lang-el">Μπύρες & Τοπικά Ποτά</span>
+    </h2>
     <div class="menu-item">
         <div class="menu-item-header"><span class="menu-item-name">NISSOS PILSNER (5% VOL.) / LAGER (4.5% VOL.)</span><span class="menu-item-price">6,00 €</span></div>
     </div>
@@ -432,16 +451,15 @@
 <script>
     function setLanguage(lang) {
         // Toggle active button styling
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event.target.classList.add('active');
-
-        // Toggle elements language visibility
+        document.getElementById('btn-en').classList.remove('active');
+        document.getElementById('btn-el').classList.remove('active');
+        
         if (lang === 'en') {
+            document.getElementById('btn-en').classList.add('active');
             document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'inline');
             document.querySelectorAll('.lang-el').forEach(el => el.style.display = 'none');
         } else {
+            document.getElementById('btn-el').classList.add('active');
             document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.lang-el').forEach(el => el.style.display = 'inline');
         }
