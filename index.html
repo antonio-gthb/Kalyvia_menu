@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,45 +22,89 @@
             padding: 0;
             line-height: 1.6;
         }
+        
+        /* Initial Choice Screen */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(252,251,247,0.9), rgba(252,251,247,0.9)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #welcome-screen h1 {
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            margin: 0 0 5px 0;
+            color: #1a1a1a;
+        }
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .choice-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 280px;
+        }
+        .choice-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            color: var(--text-color);
+            padding: 16px 20px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 35px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .choice-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Core Content Layout wrappers */
+        #menu-container-en, #menu-container-gr {
+            display: none;
+        }
+
         header {
             text-align: center;
             padding: 40px 20px 20px 20px;
-            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            background-position: center;
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--accent-color);
         }
-        h1 {
+        header h1 {
             margin: 0;
             font-size: 2.5rem;
             letter-spacing: 2px;
             color: #1a1a1a;
         }
-        .subtitle {
-            margin: 5px 0 20px 0;
+        header .subtitle {
+            margin: 5px 0 0 0;
             font-size: 1.1rem;
             text-transform: uppercase;
             color: #666;
-        }
-        .lang-switch {
-            margin-bottom: 10px;
-        }
-        .lang-btn {
-            background-color: transparent;
-            border: 2px solid var(--accent-color);
-            color: var(--text-color);
-            padding: 8px 16px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 20px;
-            margin: 0 5px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .lang-btn.active, .lang-btn:hover {
-            background-color: var(--accent-color);
-            color: white;
         }
         
         .nav-menu {
@@ -107,12 +150,21 @@
             color: #1a1a1a;
             scroll-margin-top: 70px;
         }
+        .sub-category {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+        }
         .menu-item {
             background: var(--card-bg);
-            margin: 15px 0;
+            margin: 12px 0;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
             display: flex;
             flex-direction: column;
         }
@@ -136,377 +188,830 @@
             color: #666;
             margin-top: 5px;
         }
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #888;
-            font-size: 0.9rem;
+        
+        /* Table items styling for bottles */
+        .spirit-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+        }
+        .spirit-table th, .spirit-table td {
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .spirit-table th {
+            background-color: #f0ebe1;
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+        .spirit-table tr:not(:last-child) {
+            border-bottom: 1px solid #f1eee7;
+        }
+        .spirit-section-head {
+            background-color: #fbf9f5;
+            font-weight: bold;
+            color: var(--accent-color);
         }
 
-        /* Direct visibility rules based on the active language class */
-        .lang-en, .lang-el {
-            display: none;
-        }
-        body.en-active .lang-en {
-            display: inline;
-        }
-        body.el-active .lang-el {
-            display: inline;
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 0.9rem;
+            background-color: #ffffff;
+            margin-top: 40px;
+            border-top: 1px solid #e8e5dd;
         }
     </style>
 </head>
-<body class="en-active"> <header>
-    <h1>
-        <span class="lang-en">KALYVIA</span>
-        <span class="lang-el">ΚΑΛΥΒΙΑ</span>
-    </h1>
-    <div class="subtitle">Beach Bar Menu • Tinos</div>
-    
-    <div class="lang-switch">
-        <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')"><span>🇬🇧</span> English</button>
-        <button id="btn-el" class="lang-btn" onclick="setLanguage('el')"><span>🇬🇷</span> Ελληνικά</button>
-    </div>
-</header>
+<body>
 
-<nav class="nav-menu">
-    <a href="#breakfast" class="nav-link"><span class="lang-en">Snacks</span><span class="lang-el">Σνακ</span></a>
-    <a href="#sandwiches" class="nav-link"><span class="lang-en">Burgers</span><span class="lang-el">Μπέργκερ</span></a>
-    <a href="#salads" class="nav-link"><span class="lang-en">Salads & Pizza</span><span class="lang-el">Σαλάτες & Πίτσα</span></a>
-    <a href="#coffee" class="nav-link"><span class="lang-en">Coffee & Drinks</span><span class="lang-el">Καφέδες & Ποτά</span></a>
-    <a href="#cocktails" class="nav-link"><span class="lang-en">Cocktails</span><span class="lang-el">Κοκτέιλ</span></a>
-    <a href="#beers" class="nav-link"><span class="lang-en">Beers</span><span class="lang-el">Μπύρες</span></a>
-</nav>
-
-<div class="container">
-
-    <h2 id="breakfast" class="section-title">
-        <span class="lang-en">Breakfast & Snacks</span>
-        <span class="lang-el">Πρωινά & Σνακ</span>
-    </h2>
-    
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">GREEK YOGURT</span><span class="lang-el">ΕΛΛΗΝΙΚΟ ΓΙΑΟΥΡΤΙ</span></span>
-            <span class="menu-item-price">6,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Greek Yogurt With Honey.</span>
-            <span class="lang-el">Ελληνικό Γιαούρτι με Μέλι.</span>
-        </div>
+<div id="welcome-screen">
+    <h1>KALYVIA</h1>
+    <div class="welcome-subtitle">Beach Bar • Tinos</div>
+    <div class="choice-buttons">
+        <button class="choice-btn" onclick="openMenu('en')"><span>🇬🇧</span> Menu (EN)</button>
+        <button class="choice-btn" onclick="openMenu('gr')"><span>🇬🇷</span> Κατάλογος (GR)</button>
     </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">FRUIT SALAD</span><span class="lang-el">ΦΡΟΥΤΟΣΑΛΑΤΑ</span></span>
-            <span class="menu-item-price">13,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">With Greek Yogurt And Honey.</span>
-            <span class="lang-el">Με Ελληνικό Γιαούρτι και Μέλι.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">OMELETTE SANDWICH</span><span class="lang-el">ΣΑΝΤΟΥΙΤΣ ΟΜΕΛΕΤΑ</span></span>
-            <span class="menu-item-price">10,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Sourdough Bread, Volaki Cheese, Spinach, Tomato And Chives.</span>
-            <span class="lang-el">Ψωμί Προζυμένιο, Τυρί Βολάκι, Σπανάκι, Ντομάτα και Σχοινόπρασο.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">AVOCADO TOAST</span><span class="lang-el">AVOCADO TOAST</span></span>
-            <span class="menu-item-price">9,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Sourdough Bread, Avocado Cream With Basil, Tomato And Boiled Egg.</span>
-            <span class="lang-el">Ψωμί Προζυμένιο, Κρέμα Αβοκάντο με Βασιλικό, Ντομάτα και Βραστό Αυγό.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">TOAST</span><span class="lang-el">ΤΟΣΤ</span></span>
-            <span class="menu-item-price">4,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Ham/Turkey And Cheese.</span>
-            <span class="lang-el">Ζαμπόν/Γαλοπούλα και Τυρί.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">KALYVIA TOAST</span><span class="lang-el">ΚΑΛΥΒΙΑ ΤΟΣΤ</span></span>
-            <span class="menu-item-price">6,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Big Size Bread, Ham/Turkey, Cheese, Lettuce, Tomato And Mayonnaise.</span>
-            <span class="lang-el">Ψωμί Μεγάλου Μεγέθους, Ζαμπόν Γαλοπούλα, Τυρί, Μαρούλι, Ντομάτα και Μαγιονέζα.</span>
-        </div>
-    </div>
-
-    <h2 id="sandwiches" class="section-title">
-        <span class="lang-en">Sandwiches & Burgers</span>
-        <span class="lang-el">Σάντουιτς & Μπέργκερ</span>
-    </h2>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">MORTADELLA AND PISTACHIO</span><span class="lang-el">ΜΟΡΤΑΔΕΛΑ ΚΑΙ ΦΙΣΤΙΚΙ</span></span>
-            <span class="menu-item-price">7,50 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Focaccia Bread, Mortadella, Mozzarella, Pistachio Pesto, Tomato And Olive Oil.</span>
-            <span class="lang-el">Ψωμί Φοκάτσια, Μορταδέλα, Μοτσαρέλα, Πέστο Φιστικιού, Ντομάτα και Ελαιόλαδο.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">SPINACH</span><span class="lang-el">ΣΠΑΝΑΚΙ</span></span>
-            <span class="menu-item-price">6,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Focaccia Bread, Spinach, Anthotyro Cheese, Yogurt, Anethum, Tomato, Lemon Zest And Olive Oil.</span>
-            <span class="lang-el">Ψωμί Φοκάτσια, Σπανάκι, Ανθότυρο, Γιαούρτι, Άνηθος, Ντομάτα, Ξύσμα Λεμονιού και Ελαιόλαδο.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">CLUB SANDWICH</span><span class="lang-el">CLUB SANDWICH</span></span>
-            <span class="menu-item-price">13,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">With Ham, Bacon, Cheese, Tomato, Lettuce, Mayonnaise And Tortilla Chips.</span>
-            <span class="lang-el">Με Ζαμπόν, Μπέικον, Τυρί, Ντομάτα, Μαρούλι, Μαγιονέζα και Τσιπς Τορτίγιας.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">CIABATTA</span><span class="lang-el">ΤΣΙΑΠΑΤΑ</span></span>
-            <span class="menu-item-price">6,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Ciabatta Bread, Ham/Turkey, Cheese, Lettuce And Mayonnaise.</span>
-            <span class="lang-el">Ψωμί Τσιαπάτα, Ζαμπόν Γαλοπούλα, Τυρί, Μαρούλι και Μαγιονέζα.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">CIABATTA CHICKEN</span><span class="lang-el">ΤΣΙΑΠΑΤΑ ΚΟΤΟΠΟΥΛΟ</span></span>
-            <span class="menu-item-price">8,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Ciabatta Bread, Chicken Nuggets, Cheese, Tomato, Lettuce And Mayonnaise.</span>
-            <span class="lang-el">Ψωμί Τσιαπάτα, Κοτομπουκιές, Τυρί, Ντομάτα, Μαρούλι και Μαγιονέζα.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">HOT DOG</span><span class="lang-el">HOT DOG</span></span>
-            <span class="menu-item-price">6,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Hot Dog Bread, Sausage, Ketchup And Mustard.</span>
-            <span class="lang-el">Ψωμί Hot Dog, Λουκάνικο, Κέτσαπ και Μουστάρδα.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">CLASSIC BURGER</span><span class="lang-el">CLASSIC BURGER</span></span>
-            <span class="menu-item-price">14,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">100% Beef Burger, Brioche Bread, Bacon, Cheddar Cheese, Tomato, Lettuce And Mayonnaise.</span>
-            <span class="lang-el">100% Μοσχαρίσιο Μπιφτέκι, Ψωμί Μπριός, Μπέικον, Τυρί Τσένταρ Ντομάτα, Μαρούλι και Μαγιονέζα.</span>
-        </div>
-    </div>
-
-    <h2 id="salads" class="section-title">
-        <span class="lang-en">Salads & Pizza</span>
-        <span class="lang-el">Σαλάτες & Πίτσα</span>
-    </h2>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">NTAKOS</span><span class="lang-el">ΝΤΑΚΟΣ</span></span>
-            <span class="menu-item-price">14,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Barley Nut, Tomato, Feta Cheese, Olives, Olive Oil, Oregano And Kritamos.</span>
-            <span class="lang-el">Παξιμάδι Κριθάρι, Ντομάτα, Φέτα, Ελιές, Ελαιόλαδο, Ρίγανη και Κρίταμος.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">GUACAMOLE</span><span class="lang-el">ΓΟΥΑΚΑΜΟΛΕ</span></span>
-            <span class="menu-item-price">10,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Avocado Cream, Spring Onion, Tomato, Basil, Tortilla's Chips.</span>
-            <span class="lang-el">Κρέμα Αβοκάντο, Φρέσκο Κρεμμυδάκι, Ντομάτα, Βασιλικός, Τσιπς Τορτίγιας.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">MARGHERITA PIZZA</span><span class="lang-el">ΠΙΤΣΑ ΜΑΡΓΑΡΙΤΑ</span></span>
-            <span class="menu-item-price">13,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Gouda Cheese, Tomato Sauce, Oregano.</span>
-            <span class="lang-el">Τυρί Γκούντα, Σάλτσα Ντομάτας, Ρίγανη.</span>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="menu-item-header">
-            <span class="menu-item-name"><span class="lang-en">MORTADELLA PIZZA</span><span class="lang-el">ΠΙΤΣΑ ΜΟΡΤΑΔΕΛΑ</span></span>
-            <span class="menu-item-price">15,00 €</span>
-        </div>
-        <div class="menu-item-description">
-            <span class="lang-en">Mozzarella, Pistachio Pesto, Tomato Sauce.</span>
-            <span class="lang-el">Μοτσαρέλα, Πέστο Φιστικιού, Σάλτσα Ντομάτας.</span>
-        </div>
-    </div>
-
-    <h2 id="coffee" class="section-title">
-        <span class="lang-en">Coffee & Refreshments</span>
-        <span class="lang-el">Καφέδες & Αναψυκτικά</span>
-    </h2>
-
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ESPRESSO SINGLE</span><span class="lang-el">ΕΣΠΡΕΣΟ ΜΟΝΟΣ</span></span><span class="menu-item-price">3,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ESPRESSO DOUBLE</span><span class="lang-el">ΕΣΠΡΕΣΟ ΔΙΠΛΟΣ</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">CAPPUCCINO</span><span class="lang-el">ΚΑΠΟΥΤΣΙΝΟ</span></span><span class="menu-item-price">4,50 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">FREDDO ESPRESSO</span><span class="lang-el">ΦΡΕΝΤΟ ΕΣΠΡΕΣΟ</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">FREDDO CAPPUCCINO</span><span class="lang-el">ΦΡΕΝΤΟ ΚΑΠΟΥΤΣΙΝΟ</span></span><span class="menu-item-price">4,50 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">FRAPPE</span><span class="lang-el">ΦΡΑΠΕ</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">MOCHACCINO / CHOCOLATE</span><span class="lang-el">ΜΟΚΑΤΣΙΝΟ / ΣΟΚΟΛΑΤΑ</span></span><span class="menu-item-price">7,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">MILKSHAKE</span><span class="lang-el">ΜΙΛΚΣΕΪΚ</span></span><span class="menu-item-price">7,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Chocolate / Vanilla / Strawberry / Banana.</span><span class="lang-el">Σοκολάτα / Βανίλια / Φράουλα / Μπανάνα.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ICE TEA</span><span class="lang-el">ΚΡΥΟ ΤΣΑΪ</span></span><span class="menu-item-price">4,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Lemon / Peach / Green.</span><span class="lang-el">Λεμόνι / Ροδάκινο / Πράσινο.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">WATER ICE (GRANITA)</span><span class="lang-el">ΓΡΑΝΙΤΑ</span></span><span class="menu-item-price">6,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Lemon / Strawberry.</span><span class="lang-el">Λεμόνι / Φράουλα.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">ORANGEADE / LEMONADE / SPARKLING WATER</span><span class="lang-el">ΠΟΡΤΟΚΑΛΑΔΑ / ΛΕΜΟΝΑΔΑ / ΞΙΝΟ ΝΕΡΟ</span></span><span class="menu-item-price">3,50 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">COCA COLA / LIGHT / CHERRY SODA</span><span class="lang-el">COCA COLA / LIGHT / ΣΟΔΑ ΚΕΡΑΣΙ</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">JUICES (ORANGE / LEMON / 3 FRUITS)</span><span class="lang-el">ΧΥΜΟΙ (ΠΟΡΤΟΚΑΛΙ / ΛΕΜΟΝΙ / 3 ΦΡΟΥΤΑ)</span></span><span class="menu-item-price">4,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">THREE CENTS</span><span class="menu-item-price">6,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Grapefruit Soda / Ginger Beer.</span><span class="lang-el">Grapefruit Soda / Ginger Beer.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">FRESH JUICE</span><span class="lang-el">ΦΡΕΣΚΟΣ ΧΥΜΟΣ</span></span><span class="menu-item-price">6,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Watermelon / Melon / Orange.</span><span class="lang-el">Καρπούζι / Πεπόνι / Πορτοκάλι.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">HOMEMADE LEMONADE</span><span class="lang-el">ΣΠΙΤΙΚΗ ΛΕΜΟΝΑΔΑ</span></span><span class="menu-item-price">6,00 €</span></div>
-    </div>
-
-    <h2 id="cocktails" class="section-title">
-        <span class="lang-en">Signature Cocktails</span>
-        <span class="lang-el">Signature Κοκτέιλ</span>
-    </h2>
-
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">CAMPARI SPRITZ</span><span class="menu-item-price">12,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Campari, Prosecco, Soda Water.</span><span class="lang-el">Campari, Prosecco, Σόδα.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name">APEROL SPRITZ</span><span class="menu-item-price">12,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Aperol, Prosecco, Soda Water.</span><span class="lang-el">Aperol, Prosecco, Σόδα.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">KALYVIA SMASH (FROZEN)</span><span class="lang-el">KALYVIA SMASH (ΓΡΑΝΙΤΑ)</span></span><span class="menu-item-price">12,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Masticha, Melon, Basil, Lemon, Pepper.</span><span class="lang-el">Μαστίχα, Πεπόνι, Βασιλικός, Λεμόνι, Πιπέρι.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">MARKOJITO</span><span class="lang-el">ΜΑΡΚΟΧΙTO</span></span><span class="menu-item-price">12,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">Raki, Lime, Spearmint, Lemon Juice.</span><span class="lang-el">Ρακή, Λάιμ, Δυόσμος, Χυμός Λεμονιού.</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">SHEEP KICK (FROZEN)</span><span class="lang-el">SHEEP KICK (ΓΡΑΝΙΤΑ)</span></span><span class="menu-item-price">13,00 €</span></div>
-        <div class="menu-item-description"><span class="lang-en">London Dry Gin, Honey, Lavender, Raspberry, Chilli, Lemon Juice.</span><span class="lang-el">London Dry Gin, Μέλι, Λεβάντα, Σμέουρο, Τσίλι, Χυμός Λεμονιού.</span></div>
-    </div>
-
-    <h2 id="beers" class="section-title">
-        <span class="lang-en">Beers & Local Spirits</span>
-        <span class="lang-el">Μπύρες & Τοπικά Ποτά</span>
-    </h2>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">NISSOS PILSNER (5% VOL.) / LAGER (4.5% VOL.)</span><span class="lang-el">ΝΗΣΟΣ PILSNER (5% VOL.) / LAGER (4.5% VOL.)</span></span><span class="menu-item-price">6,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">NISSOS IPA (4.6% VOL.)</span><span class="lang-el">ΝΗΣΟΣ ΙΡΑ (4.6% VOL.)</span></span><span class="menu-item-price">7,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">MYTHOS / MYTHOS ICE</span><span class="lang-el">MYTHOS / MYTHOS ICE</span></span><span class="menu-item-price">6,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">RAKI (100ML)</span><span class="lang-el">ΡΑΚΗ (100ML)</span></span><span class="menu-item-price">5,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">RAKI (200ML)</span><span class="lang-el">ΡΑΚΗ (200ML)</span></span><span class="menu-item-price">10,00 €</span></div>
-    </div>
-    <div class="menu-item">
-        <div class="menu-item-header"><span class="menu-item-name"><span class="lang-en">GLASS OF OUZO</span><span class="lang-el">ΟΥΖΟ ΠΟΤΗΡΙ</span></span><span class="menu-item-price">6,00 €</span></div>
-    </div>
-
 </div>
 
-<footer>
-    <p>KALYVIA BEACH BAR • TINOS</p>
-</footer>
+
+<div id="menu-container-en">
+    <header>
+        <h1>KALYVIA</h1>
+        <div class="subtitle">BEACH BAR • MENU</div>
+    </header>
+
+    <nav class="nav-menu">
+        <a href="#snack-en" class="nav-link">Breakfast & Snacks</a>
+        <a href="#burger-en" class="nav-link">Sandwiches & Burgers</a>
+        <a href="#pizza-en" class="nav-link">Salads & Pizza</a>
+        <a href="#coffee-en" class="nav-link">Coffee & Refreshments</a>
+        <a href="#cocktail-en" class="nav-link">Cocktails</a>
+        <a href="#beer-en" class="nav-link">Beers & Spirits</a>
+    </nav>
+
+    <div class="container">
+        <h2 id="snack-en" class="section-title">Breakfast & Snacks</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">GREEK YOGURT</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Greek Yogurt With Honey.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">FRUIT SALAD</span><span class="menu-item-price">13,00 €</span></div>
+            <div class="menu-item-description">With Greek Yogurt And Honey.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">OMELETTE SANDWICH</span><span class="menu-item-price">10,00 €</span></div>
+            <div class="menu-item-description">Sourdough Bread, Volaki Cheese, Spinach, Tomato And Chives.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">AVOCADO TOAST</span><span class="menu-item-price">9,00 €</span></div>
+            <div class="menu-item-description">Sourdough Bread, Avocado Cream With Basil, Tomato And Boiled Egg.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">TOAST</span><span class="menu-item-price">4,00 €</span></div>
+            <div class="menu-item-description">Ham/Turkey And Cheese.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">KALYVIA TOAST</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Big Size Bread, Ham/Turkey, Cheese, Lettuce, Tomato And Mayonnaise.</div>
+        </div>
+
+        <h2 id="burger-en" class="section-title">Sandwiches & Burgers</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">MORTADELLA AND PISTACHIO</span><span class="menu-item-price">7,50 €</span></div>
+            <div class="menu-item-description">Focaccia Bread, Mortadella, Mozzarella, Pistachio Pesto, Tomato And Olive Oil.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">SPINACH</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Focaccia Bread, Spinach, Anthotyro Cheese, Yogurt, Anethum, Tomato, Lemon Zest And Olive Oil.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">CLUB SANDWICH</span><span class="menu-item-price">13,00 €</span></div>
+            <div class="menu-item-description">With Ham, Bacon, Cheese, Tomato, Lettuce, Mayonnaise And Tortilla Chips.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">CIABATTA</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Ciabatta Bread, Ham/Turkey, Cheese, Lettuce And Mayonnaise.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">CIABATTA CHICKEN</span><span class="menu-item-price">8,00 €</span></div>
+            <div class="menu-item-description">Ciabatta Bread, Chicken Nuggets, Cheese, Tomato, Lettuce And Mayonnaise.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">HOT DOG</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Hot Dog Bread, Sausage, Ketchup And Mustard.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">CLASSIC BURGER</span><span class="menu-item-price">14,00 €</span></div>
+            <div class="menu-item-description">100% Beef Burger, Brioche Bread, Bacon, Cheddar Cheese, Tomato, Lettuce And Mayonnaise.</div>
+        </div>
+
+        <h2 id="pizza-en" class="section-title">Salads, Pizza & Snacks</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">NTAKOS</span><span class="menu-item-price">14,00 €</span></div>
+            <div class="menu-item-description">Barley Nut, Tomato, Feta Cheese, Olives, Olive Oil, Oregano And Kritamos.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">GUACAMOLE</span><span class="menu-item-price">10,00 €</span></div>
+            <div class="menu-item-description">Avocado Cream, Spring Onion, Tomato, Basil, Tortilla's Chips.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">MARGHERITA PIZZA</span><span class="menu-item-price">13,00 €</span></div>
+            <div class="menu-item-description">Gouda Cheese, Tomato Sauce, Oregano.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">MORTADELLA PIZZA</span><span class="menu-item-price">15,00 €</span></div>
+            <div class="menu-item-description">Mozzarella, Pistachio Pesto, Tomato Sauce.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">CHIPS / BISCUITS / CRACKERS</span><span class="menu-item-price">3,00 €</span></div>
+            <div class="menu-item-description">Standard individual snack packs.</div>
+        </div>
+
+        <h2 id="coffee-en" class="section-title">Coffee & Refreshments</h2>
+        <div class="menu-item"><div class="menu-item-header"><span>ESPRESSO SINGLE</span><span>3,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ESPRESSO DOUBLE</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>CAPPUCCINO</span><span>4,50 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>FREDDO ESPRESSO</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>FREDDO CAPPUCCINO</span><span>4,50 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>FRAPPE</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>MOCHACCINO / CHOCOLATE</span><span>7,00 €</span></div></div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MILKSHAKE</span><span>7,00 €</span></div>
+            <div class="menu-item-description">Chocolate / Vanilla / Strawberry / Banana.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ICE TEA</span><span>4,00 €</span></div>
+            <div class="menu-item-description">Lemon / Peach / Green.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SLUSH (FROZEN)</span><span>6,00 €</span></div>
+            <div class="menu-item-description">Lemon / Strawberry.</div>
+        </div>
+        <div class="menu-item"><div class="menu-item-header"><span>ORANGEADE / LEMONADE / SPARKLING WATER</span><span>3,50 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>COCA COLA / LIGHT / CHERRY SODA</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>JUICES (ORANGE / LEMON / 3 FRUITS)</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>THREE CENTS (GRAPEFRUIT SODA / GINGER BEER)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>FRESH JUICE (WATERMELON / MELON / ORANGE)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>HOMEMADE LEMONADE</span><span>6,00 €</span></div></div>
+
+        <h2 id="cocktail-en" class="section-title">Aperitif & Signature Cocktails</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>CAMPARI SPRITZ</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Campari, Prosecco, Soda Water.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>APEROL SPRITZ</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Aperol, Prosecco, Soda Water.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SBAGLIATO NEGRONI</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Campari, Sweet Vermouth, Prosecco.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>AMERICANO</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Campari, Sweet vermouth, Soda water.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>GARIBALDI</span><span>9,00 €</span></div>
+            <div class="menu-item-description">Campari, Fresh Orange Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>BELLINI</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Prosecco, Fresh Peach.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>KALYVIA SMASH (FROZEN)</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Masticha, Melon, Basil, Lemon, Pepper.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MARKOJITO</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Raki, Lime, Spearmint, Lemon Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SHEEP KICK (FROZEN)</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Honey, Lavender, Raspberry, Chilli, Lemon Juice.</div>
+        </div>
+
+        <h2 class="section-title">Classic & Modern Cocktails</h2>
+        <div class="sub-category">Rum Base</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>DRY DAIQUIRI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Rum, Campari, Passion Fruit, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MAI TAI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Jamaican Rum, Orgeat, Triple Sec, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ZOMBIE</span><span>15,00 €</span></div>
+            <div class="menu-item-description">Rum Blend, Falernum, Dons Mix, Absinthe, Angostura Bitter, Lime Juice, Grenadine.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PINA COLADA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Rum, Coconut, Pineapple, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MOJITO</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Rum, Lime Juice, Simple Syrup, Spearmint.</div>
+        </div>
+
+        <div class="sub-category">Gin Base</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>DRY MARTINI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Dry Vermouth, Orange Bitter.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>NEGRONI</span><span>14,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Sweet Vermouth, Campari.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>GIN BASIL SMASH</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Honey, Lemon Juice, Basil.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>GIMLET</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Lime Cordial.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SOUTH SIDE</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Spearmint, Simple Syrup, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SINGAPORE SLING</span><span>14,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Don Benedictine, Pineapple, Cherry Liqueur, Lemon Juice, Soda Water.</div>
+        </div>
+
+        <div class="sub-category">Vodka Base</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PORN STAR MARTINI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Vodka, Vanilla Syrup, Passion Fruit, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>APPLE MARTINI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Vodka, Green Apple Liqueur, Lemon Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>COSMOPOLITAN</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Vodka, Triple Sec, Cranberry Juice, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ESPRESSO MARTINI</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Vodka, Coffee Liqueur, Espresso.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>BLOODY MARY</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Vodka, Tomato Mix, Spices, Lemon Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MOSCOW MULE</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Vodka, Lime Juice, Ginger Beer.</div>
+        </div>
+
+        <div class="sub-category">Tequila & Mezcal Base</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PALOMA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Tequila Blanco, Lime Juice, Grapefruit Soda.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MARGARITA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Tequila Blanco, Triple Sec, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>OAXACA OLD FASHIONED</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Mescal, Tequila Reposado, Agave, Angostura Bitter.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>DIVISION BELL</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Mescal, Maraschino Liqueur, Aperol, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>TOMMY’S MARGARITA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Tequila Reposado, Agave, Lime Juice.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SPICY MARGARITA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Tequila Reposado, Agave, Lime Juice, Ginger, Chilli.</div>
+        </div>
+
+        <div class="sub-category">Whiskey Base</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PENICILLIN</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Scotch Whisky, Honey, Lemon Juice, Ginger.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>OLD FASHIONED</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Bourbon whiskey, Sugar, Angostura Bitter.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MAMIE TAYLOR</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Scotch Whisky, Lime Juice, Gingerbeer.</div>
+        </div>
+
+        <h2 class="section-title">Non-Alcoholic Options</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>TIKI MULE</span><span>8,00 €</span></div>
+            <div class="menu-item-description">Passion Fruit, Orgeat, Lime Juice, Ginger Beer.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ANAPERITIVO</span><span>8,00 €</span></div>
+            <div class="menu-item-description">Bio Aperitif, Soda Water / Tonic Water.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>LEMON SMASH</span><span>8,00 €</span></div>
+            <div class="menu-item-description">Fresh Lemon, Raspberry syrup, Spearmint.</div>
+        </div>
+
+        <h2 id="beer-en" class="section-title">Beers & Local Spirits</h2>
+        <div class="menu-item"><div class="menu-item-header"><span>ΝΗΣΟΣ PILSNER (5% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΝΗΣΟΣ LAGER (4.5% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΝΗΣΟΣ IPA (4.6% VOL.)</span><span>7,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>MYTHOS ICE (4.4% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>MYTHOS (5% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΒΕΡΓΙΝΑ LAGER (5% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>FIX ΑΝΕΥ (0% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>RAKI (100ML)</span><span>5,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>RAKI (200ML)</span><span>10,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>GLASS OF OUZO (ΟΥΖΟ ΠΟΤΗΡΙ)</span><span>6,00 €</span></div></div>
+
+        <h2 class="section-title">Wines & Champagnes</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΖΑΧΑΡΙΑ ΟΜΙΚΡΟΝ WHITE</span><span>6,00 € (Glass)</span></div>
+            <div class="menu-item-description">Moschofilero, Roditis (11.5% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΖΑΧΑΡΙΑ ΟΜΙΚΡΟΝ ROSE</span><span>6,00 € (Glass)</span></div>
+            <div class="menu-item-description">Agiorgitiko (12.5% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>LE TOUR MELAS - IDYLLE D'ACHINOS ROSE</span><span>50,00 € (Bottle)</span></div>
+            <div class="menu-item-description">Grenache, Syrah, Agiorgitiko (13.5% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΑΚΡΕΣ DOMAINE SKOURAS WHITE</span><span>38,00 € (Bottle)</span></div>
+            <div class="menu-item-description">Moschofilero, Alepou, Malagouzia (12.5% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PROSECCO (SPARKLING WINE)</span><span>8,00 € (Gl.) / 35,00 € (Bt.)</span></div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MOËT & CHANDON BRUT IMPÉRIAL</span><span>200,00 € (Bottle)</span></div>
+            <div class="menu-item-description">(13% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MOËT & CHANDON DOM PÉRIGNON 2015</span><span>600,00 € (Bottle)</span></div>
+            <div class="menu-item-description">(12.5% Vol.)</div>
+        </div>
+
+        <h2 class="section-title">Spirits & Premium Bottles</h2>
+        <table class="spirit-table">
+            <thead>
+                <tr>
+                    <th>BRAND</th>
+                    <th>VOL</th>
+                    <th>GLASS</th>
+                    <th>BOTTLE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="spirit-section-head"><td colspan="4">GIN</td></tr>
+                <tr><td>Gordon’s, London Dry Gin</td><td>37%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Tanqueray London Dry Gin</td><td>43.1%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Tanqueray 0.0%</td><td>0%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Greenall’s Gin</td><td>37.5%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Hendrick's Gin</td><td>41.4%</td><td>11,00 €</td><td>130,00 €</td></tr>
+                
+                <tr class="spirit-section-head"><td colspan="4">RUM</td></tr>
+                <tr><td>Barcelo Blanco</td><td>37.5%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Barcelo Anejo</td><td>37.5%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Worthy Park Select</td><td>40%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Diplomático Reserva Exclusiva</td><td>40%</td><td>13,00 €</td><td>150,00 €</td></tr>
+                <tr><td>Chairman’s Reserve Spiced</td><td>40%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                
+                <tr class="spirit-section-head"><td colspan="4">WHISKY</td></tr>
+                <tr><td>Evan Williams Black Label (Bourbon)</td><td>43%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Johnnie Walker Black Label (Blended)</td><td>40%</td><td>10,00 €</td><td>120,00 €</td></tr>
+                <tr><td>Teacher’s (Blended)</td><td>40%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Jameson Irish Whisky</td><td>40%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Redbreast 12YRS (Pot Still)</td><td>40%</td><td>14,00 €</td><td>165,00 €</td></tr>
+                <tr><td>Laphroaig 10 Y.O. (Peated)</td><td>40%</td><td>14,00 €</td><td>165,00 €</td></tr>
+
+                <tr class="spirit-section-head"><td colspan="4">TEQUILA & MEZCAL</td></tr>
+                <tr><td>Rooster Rojo Blanco</td><td>38%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Tequila Rooster Reposado</td><td>38%</td><td>10,00 €</td><td>120,00 €</td></tr>
+                <tr><td>Patron Silver Tequila</td><td>40%</td><td>14,00 €</td><td>165,00 €</td></tr>
+                <tr><td>Patrón Reposado</td><td>40%</td><td>15,00 €</td><td>180,00 €</td></tr>
+                <tr><td>Mezcal Bruxo X Espadin & Barril</td><td>46%</td><td>12,00 €</td><td>145,00 €</td></tr>
+
+                <tr class="spirit-section-head"><td colspan="4">VODKA</td></tr>
+                <tr><td>Serkova</td><td>37.5%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Moskovskaya</td><td>38%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Smirnoff Red</td><td>38%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Belvedere</td><td>40%</td><td>12,00 €</td><td>145,00 €</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <footer><p>KALYVIA BEACH BAR • TINOS</p></footer>
+</div>
+
+
+<div id="menu-container-gr">
+    <header>
+        <h1>ΚΑΛΎΒΙΑ</h1>
+        <div class="subtitle">BEACH BAR • ΚΑΤΆΛΟΓΟΣ</div>
+    </header>
+
+    <nav class="nav-menu">
+        <a href="#snack-gr" class="nav-link">Πρωινά & Σνακ</a>
+        <a href="#burger-gr" class="nav-link">Σάντουιτς & Μπέργκερ</a>
+        <a href="#pizza-gr" class="nav-link">Σαλάτες & Πίτσα</a>
+        <a href="#coffee-gr" class="nav-link">Καφέδες & Αναψυκτικά</a>
+        <a href="#cocktail-gr" class="nav-link">Κοκτέιλ</a>
+        <a href="#beer-gr" class="nav-link">Ποτά & Μπύρες</a>
+    </nav>
+
+    <div class="container">
+        <h2 id="snack-gr" class="section-title">Πρωινά & Σνακ</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΕΛΛΗΝΙΚΟ ΓΙΑΟΥΡΤΙ</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Ελληνικό Γιαούρτι με Μέλι.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΦΡΟΥΤΟΣΑΛΑΤΑ</span><span class="menu-item-price">13,00 €</span></div>
+            <div class="menu-item-description">Με Ελληνικό Γιαούρτι και Μέλι.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΣΑΝΤΟΥΙΤΣ ΟΜΕΛΕΤΑ</span><span class="menu-item-price">10,00 €</span></div>
+            <div class="menu-item-description">Ψωμί Προζυμένιο, Τυρί Βολάκι, Σπανάκι, Ντομάτα και Σχοινόπρασο.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">AVOCADO TOAST</span><span class="menu-item-price">9,00 €</span></div>
+            <div class="menu-item-description">Ψωμί Προζυμένιο, Κρέμα Αβοκάντο με Βασιλικό, Ντομάτα και Βραστό Αυγό.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΤΟΣΤ</span><span class="menu-item-price">4,00 €</span></div>
+            <div class="menu-item-description">Ζαμπόν/Γαλοπούλα και Τυρί.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΚΑΛΥΒΙΑ ΤΟΣΤ</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Ψωμί Μεγάλου Μεγέθους, Ζαμπόν/Γαλοπούλα, Τυρί, Μαρούλι, Ντομάτα και Μαγιονέζα.</div>
+        </div>
+
+        <h2 id="burger-gr" class="section-title">Σάντουιτς & Μπέργκερ</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΜΟΡΤΑΔΕΛΑ ΚΑΙ ΦΙΣΤΙΚΙ</span><span class="menu-item-price">7,50 €</span></div>
+            <div class="menu-item-description">Ψωμί Φοκάτσια, Μορταδέλα, Μοτσαρέλα, Πέστο Φιστικιού, Ντομάτα και Ελαιόλαδο.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΣΠΑΝΑΚΙ</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Ψωμί Φοκάτσια, Σπανάκι, Ανθότυρο, Γιαούρτι, Άνηθος, Ντομάτα, Ξύσμα Λεμονιού και Ελαιόλαδο.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">CLUB SANDWICH</span><span class="menu-item-price">13,00 €</span></div>
+            <div class="menu-item-description">Με Ζαμπόν, Μπέικον, Τυρί, Ντομάτα, Μαρούλι, Μαγιονέζα και Τσιπς Τορτίγιας.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΤΣΙΑΠΑΤΑ</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Ψωμί Τσιαπάτα, Ζαμπόν/Γαλοπούλα, Τυρί, Μαρούλι και Μαγιονέζα.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΤΣΙΑΠΑΤΑ ΚΟΤΟΠΟΥΛΟ</span><span class="menu-item-price">8,00 €</span></div>
+            <div class="menu-item-description">Ψωμί Τσιαπάτα, Κοτομπουκιές, Τυρί, Ντομάτα, Μαρούλι και Μαγιονέζα.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">HOT DOG</span><span class="menu-item-price">6,00 €</span></div>
+            <div class="menu-item-description">Ψωμί Hot Dog, Λουκάνικο, Κέτσαπ και Μουστάρδα.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">CLASSIC BURGER</span><span class="menu-item-price">14,00 €</span></div>
+            <div class="menu-item-description">100% Μοσχαρίσιο Μπιφτέκι, Ψωμί Μπριός, Μπέικον, Τυρί Τσένταρ Ντομάτα, Μαρούλι και Μαγιονέζα.</div>
+        </div>
+
+        <h2 id="pizza-gr" class="section-title">Σαλάτες, Πίτσα & Σνακ</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΝΤΑΚΟΣ</span><span class="menu-item-price">14,00 €</span></div>
+            <div class="menu-item-description">Παξιμάδι Κριθάρι, Ντομάτα, Φέτα, Ελιές, Ελαιόλαδο, Ρίγανη και Κρίταμος.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΓΟΥΑΚΑΜΟΛΕ</span><span class="menu-item-price">10,00 €</span></div>
+            <div class="menu-item-description">Κρέμα Αβοκάντο, Φρέσκο Κρεμμυδάκι, Ντομάτα, Βασιλικός, Τσιπς Τορτίγιας.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΠΙΤΣΑ ΜΑΡΓΑΡΙΤΑ</span><span class="menu-item-price">13,00 €</span></div>
+            <div class="menu-item-description">Τυρί Γκούντα, Σάλτσα Ντομάτας, Ρίγανη.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΠΙΤΣΑ ΜΟΡΤΑΔΕΛΑ</span><span class="menu-item-price">15,00 €</span></div>
+            <div class="menu-item-description">Μοτσαρέλα, Πέστο Φιστικιού, Σάλτσα Ντομάτας.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span class="menu-item-name">ΠΑΤΑΤΑΚΙΑ / ΜΠΙΣΚΟΤΑ / ΚΡΑΚΕΡΣ</span><span class="menu-item-price">3,00 €</span></div>
+            <div class="menu-item-description">Τυποποιημένα ατομικά σνακ.</div>
+        </div>
+
+        <h2 id="coffee-gr" class="section-title">Καφέδες & Αναψυκτικά</h2>
+        <div class="menu-item"><div class="menu-item-header"><span>ΕΣΠΡΕΣΟ ΜΟΝΟΣ</span><span>3,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΕΣΠΡΕΣΟ ΔΙΠΛΟΣ</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΚΑΠΟΥΤΣΙΝΟ</span><span>4,50 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΦΡΕΝΤΟ ΕΣΠΡΕΣΟ</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΦΡΕΝΤΟ ΚΑΠΟΥΤΣΙΝΟ</span><span>4,50 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΦΡΑΠΕ</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΜΟΚΑΤΣΙΝΟ / ΣΟΚΟΛΑΤΑ</span><span>7,00 €</span></div></div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΜΙΛΚΣΕΪΚ</span><span>7,00 €</span></div>
+            <div class="menu-item-description">Σοκολάτα / Βανίλια / Φράουλα / Μπανάνα.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΚΡΥΟ ΤΣΑΪ</span><span>4,00 €</span></div>
+            <div class="menu-item-description">Λεμόνι / Ροδάκινο / Πράσινο.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΓΡΑΝΙΤΑ</span><span>6,00 €</span></div>
+            <div class="menu-item-description">Λεμόνι / Φράουλα.</div>
+        </div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΠΟΡΤΟΚΑΛΑΔΑ / ΛΕΜΟΝΑΔΑ / ΞΙΝΟ ΝΕΡΟ</span><span>3,50 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>COCA COLA / LIGHT / ΣΟΔΑ ΚΕΡΑΣΙ</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΧΥΜΟΙ (ΠΟΡΤΟΚΑΛΙ / ΛΕΜΟΝΙ / 3 ΦΡΟΥΤΑ)</span><span>4,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>THREE CENTS (GRAPEFRUIT SODA / GINGER BEER)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΦΡΕΣΚΟΣ ΧΥΜΟΣ (ΚΑΡΠΟΥΖΙ / ΠΕΠΌΝΙ / ΠΟΡΤΟΚΆΛΙ)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΣΠΙΤΙΚΗ ΛΕΜΟΝΑΔΑ</span><span>6,00 €</span></div></div>
+
+        <h2 id="cocktail-gr" class="section-title">Απεριτίφ & Signature Κοκτέιλ</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>CAMPARI SPRITZ</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Campari, Prosecco, Σόδα.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>APEROL SPRITZ</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Aperol, Prosecco, Σόδα.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SBAGLIATO NEGRONI</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Campari, Γλυκό Βερμούτ, Prosecco.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>AMERICANO</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Campari, Γλυκό Βερμούτ, Σόδα.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>GARIBALDI</span><span>9,00 €</span></div>
+            <div class="menu-item-description">Campari, Φρέσκος Χυμός Πορτοκάλι.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>BELLINI</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Prosecco, Φρέσκο Ροδάκινο.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>KALYVIA SMASH (ΓΡΑΝΙΤΑ)</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Μαστίχα, Πεπόνι, Βασιλικός, Λεμόνι, Πιπέρι.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΜΑΡΚΟΧΙTO</span><span>12,00 €</span></div>
+            <div class="menu-item-description">Ρακή, Λάιμ, Δυόσμος, Χυμός Λεμονιού.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SHEEP KICK (ΓΡΑΝΙΤΑ)</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Μέλι, Λεβάντα, Σμέουρο, Τσίλι, Χυμός Λεμονιού.</div>
+        </div>
+
+        <h2 class="section-title">Κλασικά & Μοντέρνα Κοκτέιλ</h2>
+        <div class="sub-category">Με βάση το Ρούμι</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>DRY DAIQUIRI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Ρούμι, Campari, Φρούτα του Πάθους, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΜΑΙ ΤΑΙ</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Τζαμαϊκανό Ρούμι, Orgeat (Σιρόπι Πικραμύγδαλου), Triple Sec, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ZOMBIE</span><span>15,00 €</span></div>
+            <div class="menu-item-description">Blend από Ρούμια, Falernum, Dons Mix, Αψέντι, Angostura Bitters, Χυμός Λάιμ, Γρεναδίνη.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PINA COLADA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Ρούμι, Καρύδα, Ανανάς, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MOJITO</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Ρούμι, Χυμός Λάιμ, Σιρόπι Ζάχαρης, Δυόσμος.</div>
+        </div>
+
+        <div class="sub-category">Με βάση το Τζιν</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>DRY MARTINI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Ξηρό Βερμούτ, Orange Bitters.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>NEGRONI</span><span>14,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Γλυκό Βερμούτ, Campari.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>GIN BASIL SMASH</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Μέλι, Χυμός Λεμονιού, Βασιλικός.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>GIMLET</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Lime Cordial.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SOUTH SIDE</span><span>13,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Δυόσμος, Σιρόπι Ζάχαρης, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SINGAPORE SLING</span><span>14,00 €</span></div>
+            <div class="menu-item-description">London Dry Gin, Dom Benedictine, Ανανάς, Λικέρ Κεράσι, Χυμός Λεμονιού, Σόδα.</div>
+        </div>
+
+        <div class="sub-category">Με βάση τη Βότκα</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PORN STAR MARTINI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Βότκα, Σιρόπι Βανίλιας, Φρούτα του Πάθους, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>APPLE MARTINI</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Βότκα, Λικέρ Πράσινου Μήλου, Χυμός Λεμονιού.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>COSMOPOLITAN</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Βότκα, Triple Sec, Χυμός Κράνμπερη, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ESPRESSO MARTINI</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Βότκα, Λικέρ Καφέ, Εσπρέσο.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>BLOODY MARY</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Βότκα, Μίγμα Ντομάτας, Μπαχαρικά, Χυμός Λεμονιού.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MOSCOW MULE</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Βότκα, Χυμός Λάιμ, Ginger Beer.</div>
+        </div>
+
+        <div class="sub-category">Με βάση την Τεκίλα & το Μεσκάλ</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PALOMA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Τεκίλα Blanco, Χυμός Λάιμ, Grapefruit Soda.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MARGARITA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Τεκίλα Blanco, Triple Sec, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>OAXACA OLD FASHIONED</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Μεσκάλ, Τεκίλα Reposado, Αγαύη, Angostura Bitters.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>DIVISION BELL</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Μεσκάλ, Λικέρ Maraschino, Aperol, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>TOMMY'S MARGARITA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Τεκίλα Reposado, Αγαύη, Χυμός Λάιμ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>SPICY MARGARITA</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Τεκίλα Reposado, Αγαύη, Χυμός Λάιμ, Τζίντζερ, Τσίλι.</div>
+        </div>
+
+        <div class="sub-category">Με βάση το Ουίσκι</div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PENICILLIN</span><span>14,00 €</span></div>
+            <div class="menu-item-description">Σκωτσέζικο Ουίσκι, Μέλι, Χυμός Λεμονιού, Τζίντζερ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>OLD FASHIONED</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Bourbon Ουίσκι, Ζάχαρη, Angostura Bitters.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MAMIE TAYLOR</span><span>13,00 €</span></div>
+            <div class="menu-item-description">Σκωτσέζικο Ουίσκι, Χυμός Λάιμ, Ginger Beer.</div>
+        </div>
+
+        <h2 class="section-title">Επιλογές χωρίς Αλκοόλ</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>TIKI MULE</span><span>8,00 €</span></div>
+            <div class="menu-item-description">Φρούτα του Πάθους, Orgeat, Χυμός Λάιμ, Ginger Beer.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ANAPERITIVO</span><span>8,00 €</span></div>
+            <div class="menu-item-description">Βιολογικό Απεριτίφ, Σόδα / Τόνικ.</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>LEMON SMASH</span><span>8,00 €</span></div>
+            <div class="menu-item-description">Φρέσκο Λεμόνι, Σιρόπι Σμέουρου, Δυόσμος.</div>
+        </div>
+
+        <h2 id="beer-gr" class="section-title">Μπύρες & Τοπικά Ποτά</h2>
+        <div class="menu-item"><div class="menu-item-header"><span>ΝΗΣΟΣ PILSNER (5% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΝΗΣΟΣ LAGER (4.5% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΝΗΣΟΣ ΙΡΑ (4.6% VOL.)</span><span>7,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>MYTHOS ICE (4.4% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>MYTHOS (5% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΒΕΡΓΙΝΑ LAGER (5% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>FIX ANEY (0% VOL.)</span><span>6,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>PAKH (100ML)</span><span>5,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>PAKH (200ML)</span><span>10,00 €</span></div></div>
+        <div class="menu-item"><div class="menu-item-header"><span>ΟΥΖΟ ΠΟΤΗΡΙ</span><span>6,00 €</span></div></div>
+
+        <h2 class="section-title">Κράσια & Σαμπάνιες</h2>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΖΑΧΑΡΙΑΣ ΟΜΙΚΡΟΝ ΛΕΥΚΟ</span><span>6,00 € (Ποτήρι)</span></div>
+            <div class="menu-item-description">Μοσχοφίλερο, Ροδίτης (11.5% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΖΑΧΑΡΙΑΣ ΟΜΙΚΡΟΝ ΡΟΖΕ</span><span>6,00 € (Ποτήρι)</span></div>
+            <div class="menu-item-description">Αγιωργίτικο (12.5% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>LE TOUR MELAS - IDYLLE D'ACHINOS ROSE</span><span>50,00 € (Φιάλη)</span></div>
+            <div class="menu-item-description">Grenache, Syrah, Αγιωργίτικο (13.5% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>ΑΚΡΕΣ DOMAINE SKOURAS ΛΕΥΚΟ</span><span>38,00 € (Φιάλη)</span></div>
+            <div class="menu-item-description">Μοσχοφίλερο, Αλεπού, Μαλαγουζιά (12.5% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>PROSECCO (ΑΦΡΩΔΗΣ ΟΙΝΟΣ)</span><span>8,00 € (Ποτ.) / 35,00 € (Φιαλ.)</span></div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MOËT & CHANDON BRUT IMPÉRIAL</span><span>200,00 € (Φιάλη)</span></div>
+            <div class="menu-item-description">(13% Vol.)</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-header"><span>MOËT & CHANDON DOM PÉRIGNON 2015</span><span>600,00 € (Φιάλη)</span></div>
+            <div class="menu-item-description">(12.5% Vol.)</div>
+        </div>
+
+        <h2 class="section-title">Αλκοολούχα Ποτά & Premium Φιάλες</h2>
+        <table class="spirit-table">
+            <thead>
+                <tr>
+                    <th>ΕΤΙΚΕΤΑ / ΠΟΤΟ</th>
+                    <th>VOL</th>
+                    <th>ΠΟΤΗΡΙ</th>
+                    <th>ΦΙΑΛΗ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="spirit-section-head"><td colspan="4">GIN</td></tr>
+                <tr><td>Gordon’s, London Dry Gin</td><td>37%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Tanqueray London Dry Gin</td><td>43.1%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Tanqueray 0.0%</td><td>0%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Greenall’s Gin</td><td>37.5%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Hendrick's Gin</td><td>41.4%</td><td>11,00 €</td><td>130,00 €</td></tr>
+                
+                <tr class="spirit-section-head"><td colspan="4">ΡΟΥΜΙ (RUM)</td></tr>
+                <tr><td>Barcelo Blanco</td><td>37.5%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Barcelo Anejo</td><td>37.5%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Worthy Park Select</td><td>40%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Diplomático Reserva Exclusiva</td><td>40%</td><td>13,00 €</td><td>150,00 €</td></tr>
+                <tr><td>Chairman’s Reserve Spiced</td><td>40%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                
+                <tr class="spirit-section-head"><td colspan="4">ΟΥΙΣΚΙ (WHISKY)</td></tr>
+                <tr><td>Evan Williams Black Label (Bourbon)</td><td>43%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Johnnie Walker Black Label (Blended)</td><td>40%</td><td>10,00 €</td><td>120,00 €</td></tr>
+                <tr><td>Teacher’s (Blended)</td><td>40%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Jameson Irish Whisky</td><td>40%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Redbreast 12YRS (Pot Still)</td><td>40%</td><td>14,00 €</td><td>165,00 €</td></tr>
+                <tr><td>Laphroaig 10 Y.O. (Peated Single Malt)</td><td>40%</td><td>14,00 €</td><td>165,00 €</td></tr>
+
+                <tr class="spirit-section-head"><td colspan="4">ΤΕΚΙΛΑ & ΜΕΣΚΑΛ (TEQUILA & MEZCAL)</td></tr>
+                <tr><td>Rooster Rojo Blanco</td><td>38%</td><td>9,00 €</td><td>110,00 €</td></tr>
+                <tr><td>Tequila Rooster Reposado</td><td>38%</td><td>10,00 €</td><td>120,00 €</td></tr>
+                <tr><td>Patron Silver Tequila</td><td>40%</td><td>14,00 €</td><td>165,00 €</td></tr>
+                <tr><td>Patrón Reposado</td><td>40%</td><td>15,00 €</td><td>180,00 €</td></tr>
+                <tr><td>Mezcal Bruxo X Espadin & Barril</td><td>46%</td><td>12,00 €</td><td>145,00 €</td></tr>
+
+                <tr class="spirit-section-head"><td colspan="4">ΒΟΤΚΑ (VODKA)</td></tr>
+                <tr><td>Serkova</td><td>37.5%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Moskovskaya</td><td>38%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Smirnoff Red</td><td>38%</td><td>8,00 €</td><td>95,00 €</td></tr>
+                <tr><td>Belvedere</td><td>40%</td><td>12,00 €</td><td>145,00 €</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <footer><p>KALYVIA BEACH BAR • ΤΗΝΟΣ</p></footer>
+</div>
 
 <script>
-    function setLanguage(lang) {
-        // Simple button active class switcher
-        document.getElementById('btn-en').classList.remove('active');
-        document.getElementById('btn-el').classList.remove('active');
-        document.getElementById('btn-' + lang).classList.add('active');
+    function openMenu(lang) {
+        // Instantly hide the landing screen layout view
+        document.getElementById('welcome-screen').style.display = 'none';
         
-        // Simply change the main layout class name on the body tag!
+        // Unhide only the section matching the selected language button
         if (lang === 'en') {
-            document.body.className = "en-active";
+            document.getElementById('menu-container-en').style.display = 'block';
         } else {
-            document.body.className = "el-active";
+            document.getElementById('menu-container-gr').style.display = 'block';
         }
     }
 </script>
