@@ -12,7 +12,7 @@
 <body>
 
     <div id="welcome-screen">
-        <img src="logo.png" alt="Kalyvia Beach Bar Logo" class="welcome-logo">
+        <img src="logo.svg" alt="Kalyvia Beach Bar Logo" class="welcome-logo">
         <div class="choice-buttons">
             <button class="choice-btn" onclick="openMenu('en')"><span>🇬🇧</span> Menu (EN)</button>
             <button class="choice-btn" onclick="openMenu('gr')"><span>🇬🇷</span> Κατάλογος (GR)</button>
@@ -23,7 +23,7 @@
 
     <div id="menu-container-en">
         <header>
-            <img src="logo.png" alt="Kalyvia Beach Bar Logo" class="logo">
+            <img src="logo.svg" alt="Kalyvia Beach Bar Logo" class="logo" onclick="goBackToWelcomeScreen()">
         </header>
 
         <nav class="nav-menu">
@@ -623,7 +623,7 @@
 
     <div id="menu-container-gr">
         <header>
-            <img src="logo.png" alt="Kalyvia Beach Bar Logo" class="logo">
+            <img src="logo.svg" alt="Kalyvia Beach Bar Logo" class="logo" onclick="goBackToWelcomeScreen()">
         </header>
 
         <nav class="nav-menu">

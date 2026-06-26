@@ -7,7 +7,7 @@ function openMenu(lang) {
 
     // Instantly hide the landing screen layout view
     document.getElementById('welcome-screen').style.display = 'none';
-    
+
     const btn = document.getElementById('language-toggle-btn');
     // Unhide only the section matching the selected language button
     if (lang === 'en') {
@@ -28,6 +28,15 @@ function toggleLanguage() {
     } else {
         openMenu('en');
     }
+}
+
+function goBackToWelcomeScreen() {
+    localStorage.removeItem('preferredLang');
+    currentLang = null;
+    document.getElementById('menu-container-en').style.display = 'none';
+    document.getElementById('menu-container-gr').style.display = 'none';
+    document.getElementById('welcome-screen').style.display = 'flex';
+    document.getElementById('language-toggle-btn').classList.remove('visible');
 }
 
 // Auto-load preferred language if saved
