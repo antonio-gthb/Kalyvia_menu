@@ -1,0 +1,307 @@
+:root {
+    --bg-color: #fcfbf7;
+    --text-color: #2c2c2c;
+    --accent-color: #c4a468;
+    --card-bg: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Initial Choice Screen */
+#welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(252, 251, 247, 0.9), rgba(252, 251, 247, 0.9)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#welcome-screen h1 {
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    margin: 0 0 5px 0;
+    color: #1a1a1a;
+}
+
+.welcome-subtitle {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.choice-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 280px;
+}
+
+.choice-btn {
+    background-color: var(--card-bg);
+    border: 2px solid var(--accent-color);
+    color: var(--text-color);
+    padding: 16px 20px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 35px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.choice-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Core Content Layout wrappers */
+#menu-container-en,
+#menu-container-gr {
+    display: none;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+    background-color: #ffffff;
+    border-bottom: 3px solid var(--accent-color);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+}
+
+header .subtitle {
+    margin: 5px 0 0 0;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px 10px;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--accent-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 15px;
+    background-color: #f0ebe1;
+    transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section-title {
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 5px;
+    margin-top: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    scroll-margin-top: 70px;
+}
+
+.sub-category {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin: 20px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 10px;
+}
+
+.menu-item {
+    background: var(--card-bg);
+    margin: 12px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.menu-item-name {
+    color: #1a1a1a;
+}
+
+.menu-item-price {
+    color: var(--text-color);
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+.menu-item-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Table items styling for bottles */
+.spirit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.spirit-table th,
+.spirit-table td {
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.spirit-table th {
+    background-color: #f0ebe1;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.spirit-table tr:not(:last-child) {
+    border-bottom: 1px solid #f1eee7;
+}
+
+.spirit-section-head {
+    background-color: #fbf9f5;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    margin-top: 40px;
+    border-top: 1px solid #e8e5dd;
+}
+
+/* Floating Language Toggle Button */
+#language-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid var(--accent-color);
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(196, 164, 104, 0.25);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#language-toggle-btn.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#language-toggle-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 12px 36px rgba(196, 164, 104, 0.35);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+#language-toggle-btn:active {
+    transform: scale(0.95) translateY(0);
+}
+
+#language-toggle-btn span {
+    font-size: 1.2rem;
+    display: inline-block;
+}
+
+/* Logo styling */
+.logo {
+    max-height: 200px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.03);
+}
